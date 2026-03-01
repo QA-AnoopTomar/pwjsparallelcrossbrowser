@@ -6,7 +6,7 @@ testDir: './tests',
 
 retries: 1,
 
-timeout: 30_000,
+timeout: 30000,
 
 workers: 3, // Parallel execution (default is # of cores)
 
