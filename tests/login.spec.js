@@ -1,15 +1,19 @@
-const{test,expect}=require('@playwright/test');
-
-test('Login Form validation',async({page})=>{
-
-    await page.goto('http://127.0.0.1:5500/Day17-ParallelCrossBrowser/html/login.html');
-    await page.fill('#username','admin');
-    await page.fill('#password','1234');
-    //await page.click('text=Login');
-    await page.evaluate(()=>{
-        login(); //directly call the login function from within the page
-    });
-    await page.waitForTimeout(3000);
-    await expect(page.locator('#message')).toHaveText('Login successful');
-
+const { test, expect } = require('@playwright/test');
+const path = require('path');
+const fs = require('fs');
+ 
+test('custom login form - success scenario', async ({ page }) => {
+  const filePath = path.join(__dirname, '..', 'login.html');
+  const fileUrl = 'file://' + filePath;
+ 
+  await page.goto(fileUrl);
+ 
+  await page.fill('#username', 'admin');
+  await page.fill('#password', 'password');
+  await page.click('button');
+ 
+  await expect(page.locator('#message')).toBeVisible();
+  await expect(page.locator('#message')).toHaveText('Login successful!');
 });
+ 
+ 

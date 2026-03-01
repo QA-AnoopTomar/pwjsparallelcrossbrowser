@@ -1,40 +1,55 @@
-name: Playwright Tests
+name: Pw Tests
  
 on:
 
   push:
 
-    branches: [main]
+    branches: [ main ]
+
+  pull_request:
+
+    branches: [ main ]
  
 jobs:
 
-  test:   
+  test:
 
     runs-on: ubuntu-latest
+ 
+    steps:
 
-  steps:
+      - name: Checkout code
 
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
+ 
+      - name: Setup Node.js
 
-      - uses: actions/setup-node@v3
+        uses: actions/setup-node@v3
 
         with:
 
-          node-version:20
+          node-version: 20
  
-      - run: npm install
+      - name: Install dependencies
 
-      - run: npx playwright install --with-deps
+        run: npm ci
+ 
+      - name: Install Playwright browsers
 
-      - run: npx playwright test
+        run: npx playwright install --with-deps
+ 
+      - name: Run Playwright tests
 
-      - uses: actions/upload-artifact@v3
+        run: npx playwright test
+ 
+      - name: Upload Playwright HTML Report
 
         if: always()
 
-          with:
+        uses: actions/upload-artifact@v4
 
-            name: playwright-report
+        with:
 
-            path: playwright-report/
- 
+          name: playwright-report
+
+          path: playwright-report
