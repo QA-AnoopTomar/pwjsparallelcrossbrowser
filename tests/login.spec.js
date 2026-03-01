@@ -9,7 +9,7 @@ test('custom login form - success scenario', async ({ page }) => {
   await page.goto(fileUrl);
  
   await page.fill('#username', 'admin');
-  await page.fill('#password', 'password');
+  await page.fill('#password', '1234');
   await page.click('button');
  
   await expect(page.locator('#message')).toBeVisible();
