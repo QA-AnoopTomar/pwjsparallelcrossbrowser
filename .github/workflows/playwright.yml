@@ -34,7 +34,7 @@ jobs:
 
           with:
 
-            sname: playwright-report
+            name: playwright-report
 
             path: playwright-report/
  
