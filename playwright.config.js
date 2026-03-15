@@ -3,48 +3,39 @@ const { defineConfig } = require('@playwright/test');
 module.exports = defineConfig({
 
 testDir: './tests',
+timeout: 30000,
 
 retries: 1,
 
-timeout: 30000,
-
-workers: 3, // Parallel execution (default is # of cores)
+workers: 3, // parallel execution in CI
 
 reporter: [['html', { open: 'never' }]],
 
-use: {
+use:{
+  headless:true,
+  },
+  projects:[
+  {
 
-baseURL: 'http://localhost:5500',
+  name: 'Chromium',
 
-headless: true,
+  use: { browserName: 'chromium' },
 
-},
+  },
 
-projects: [
+  {
 
-{
+  name: 'Firefox',
 
-name: 'Chromium',
+  use: { browserName: 'firefox' },
 
-use: { browserName: 'chromium' },
+  },
 
-},
+  {
+    name:'WebKit',
 
-{
+    use:{browserName:'webkit'}
+  },
 
-name: 'Firefox',
-
-use: { browserName: 'firefox' },
-
-},
-
-{
-
-name: 'WebKit',
-
-use: { browserName: 'webkit' },
-
-},
-
-],
+]
 });

@@ -3,19 +3,21 @@
 <head><title>Login</title></head>
 <body>
   <h1>Login</h1>
-  <input id="username" />
-  <input id="password" type="password" />
-  <button type="button" onclick="login()">Login</button>
+  <input id="username" placeholder="Username"/>
+  <br><br>
+  <input id="password" type="password" placeholder="Password"/>
+  <br><br>
+  <button onclick="login()">Login</button>
   <p id="message"></p>
  
  
     <script>
         function login() {
-            const u = document.getElementById('username').value;
-            const p = document.getElementById('password').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
  
  
-            if (u === 'admin' && p === '1234') {
+            if (username === 'admin' && password === 'password') {
                 document.getElementById('message').innerText = 'Login successful!';
             } else {
                 document.getElementById('message').innerText = 'Login failed!';

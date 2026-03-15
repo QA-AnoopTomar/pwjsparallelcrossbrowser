@@ -3,17 +3,22 @@ const path = require('path');
 const fs = require('fs');
  
 test('custom login form - success scenario', async ({ page }) => {
-  const filePath = path.join(__dirname, '..', 'login.html');
-  const fileUrl = 'file://' + filePath;
+//const filePath = path.join(__dirname, '..', 'html/login.html');
+//const fileUrl = 'file://' + filePath;
  
-  await page.goto(fileUrl);
+const filePath = path.resolve(__dirname, '../html/login.html');
+const fileUrl = 'file://' + filePath;
+
+await page.goto(fileUrl);
+
+await page.fill('#username', 'admin');
+await page.fill('#password', 'password');
+await page.click('button');
  
-  await page.fill('#username', 'admin');
-  await page.fill('#password', '1234');
-  await page.click('button');
- 
-  await expect(page.locator('#message')).toBeVisible();
-  await expect(page.locator('#message')).toHaveText('Login successful!');
+await expect(page.locator('#message')).toBeVisible();
+await expect(page.locator('#message')).toHaveText('Login successful!');
 });
+ 
+ 
  
  
