@@ -6,6 +6,9 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/QA-AnoopTomar/pwjsparrallelcrossbrowser.git
 git push -u origin main
+
+//if origin added already and want to change
+git remote set -url origin https://github.com/QA-AnoopTomar/pwjsparrallelcrossbrowser.git
 …or push an existing repository from the command line
 git remote add origin https://github.com/QA-AnoopTomar/pwjsparrallelcrossbrowser.git
 git branch -M main
